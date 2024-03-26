@@ -18,9 +18,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.lucas.meuscontatos.model.Contato
 
-@Composable
-fun ContatoCard() {
+    @Composable
+    fun ContatoCard(contato: Contato) {
+
     Card(
         modifier = Modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(
@@ -30,21 +32,20 @@ fun ContatoCard() {
         Row(
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Column(modifier = Modifier
-                .padding(8.dp)
-                .weight(2f)) {
+
+            Column(modifier = Modifier.padding(8.dp).weight(2f)) {
                 Text(
-                    text = "Nome do Contato",
+                    text = contato.nome,
                     fontSize = 24.sp,
                     fontWeight = FontWeight.Bold
                 )
                 Text(
-                    text = "8888-9999",
+                    text = contato.telefone,
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold
                 )
                 Text(
-                    text = "Amigo",
+                    text = "Amigo: ${contato.isAmigo}",
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold
                 )

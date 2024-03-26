@@ -35,6 +35,7 @@ fun ContatoForm(
     onTelefoneChange: (String) -> Unit,
     onAmigoChange: (Boolean) -> Unit
 ) {
+
     //Obtendo o contexto
     val context = LocalContext.current
     //Criando a instancia com o db através de contatoRepository

@@ -6,8 +6,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.LocalContext
 import com.lucas.meuscontatos.components.ContatoForm
 import com.lucas.meuscontatos.components.ContatoList
+import com.lucas.meuscontatos.database.repository.ContatoRepository
+
 
 @Composable
 fun ContatosScreen() {
@@ -15,6 +18,10 @@ fun ContatosScreen() {
     var nomeState by remember { mutableStateOf("") }
     var telefoneState by remember { mutableStateOf("") }
     var amigoState by remember { mutableStateOf(false) }
+
+    val context = LocalContext.current
+    val contatoRepository = ContatoRepository(context = context)
+    var listaContatosState = remember { mutableStateOf(contatoRepository.listarContatos()) }
 
     Column {
         ContatoForm(
@@ -31,6 +38,8 @@ fun ContatosScreen() {
                 amigoState = it
             }
         )
-        ContatoList()
+        ContatoList(listaContatos = listaContatosState)
     }
+
+
 }

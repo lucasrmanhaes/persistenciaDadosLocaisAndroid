@@ -8,11 +8,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.lucas.meuscontatos.model.Contato
 
-@Composable
-fun ContatoList() {
+    @Composable
+    fun ContatoList(listaContatos: MutableState<List<Contato>>) {
 
     Column(modifier = Modifier
         .fillMaxSize()
@@ -21,8 +23,9 @@ fun ContatoList() {
     )
 
     {
-        for (i in 0..10){
-            ContatoCard()
+        for (i in listaContatos.value){
+            // A cada volta do for o contato é salvo em i e atribuido ao contatoCard
+            ContatoCard(i)
             Spacer(modifier = Modifier.height(4.dp))
         }
     }
