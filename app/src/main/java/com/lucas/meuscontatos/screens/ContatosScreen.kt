@@ -36,6 +36,9 @@ fun ContatosScreen() {
             },
             onAmigoChange ={
                 amigoState = it
+            },
+            atualizarLista = {
+                listaContatosState.value = contatoRepository.listarContatos()
             }
         )
         ContatoList(listaContatos = listaContatosState)

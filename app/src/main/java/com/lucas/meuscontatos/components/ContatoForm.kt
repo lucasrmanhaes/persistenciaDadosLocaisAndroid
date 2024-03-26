@@ -33,7 +33,8 @@ fun ContatoForm(
     amigo: Boolean,
     onNomeChange: (String) -> Unit,
     onTelefoneChange: (String) -> Unit,
-    onAmigoChange: (Boolean) -> Unit
+    onAmigoChange: (Boolean) -> Unit,
+    atualizarLista: () -> Unit
 ) {
 
     //Obtendo o contexto
@@ -98,7 +99,9 @@ fun ContatoForm(
                       isAmigo = amigo
                   )
                 contatoRepository.salvar(contato)
+                atualizarLista()
             },
+
             modifier = Modifier.fillMaxWidth()
         ) {
             Text(
