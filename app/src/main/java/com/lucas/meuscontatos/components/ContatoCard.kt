@@ -12,16 +12,25 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.lucas.meuscontatos.database.repository.ContatoRepository
 import com.lucas.meuscontatos.model.Contato
 
-    @Composable
-    fun ContatoCard(contato: Contato) {
+@Composable
+fun ContatoCard(contato: Contato, listaContatos: MutableState<List<Contato>>) {
+
+    val context = LocalContext.current
+    val contatoRepository = ContatoRepository(context = context)
+    fun atualizarLista(){
+        listaContatos.value = contatoRepository.listarContatos()
+    }
 
     Card(
         modifier = Modifier.fillMaxWidth(),
@@ -51,7 +60,12 @@ import com.lucas.meuscontatos.model.Contato
                 )
             }
 
-            IconButton(onClick = { /*TODO*/ }) {
+            IconButton(
+                onClick = {
+                    contatoRepository.excluir(contato = contato)
+                    atualizarLista()
+                }
+            ){
                 Icon(
                     imageVector = Icons.Default.Delete,
                     contentDescription = ""

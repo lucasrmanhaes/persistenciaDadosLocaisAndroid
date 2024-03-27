@@ -25,7 +25,7 @@ import com.lucas.meuscontatos.model.Contato
     {
         for (i in listaContatos.value){
             // A cada volta do for o contato é salvo em i e atribuido ao contatoCard
-            ContatoCard(i)
+            ContatoCard(i, listaContatos)
             Spacer(modifier = Modifier.height(4.dp))
         }
     }
